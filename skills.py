@@ -84,7 +84,12 @@ def count_unique(input_string):
 
     """
 
-    return {}
+    word_count = {}
+
+    for word in input_string.split():
+        word_count[word] = word_count.get(word, 0) + 1
+
+    return word_count
 
 
 def translate_to_pirate_talk(phrase):
@@ -130,8 +135,37 @@ def translate_to_pirate_talk(phrase):
 
     """
 
-    return ""
+    english_to_pirate = {
+                        "sir": "matey",
+                        "hotel": "fleebag inn",
+                        "student": "swabbie",
+                        "boy": "matey",
+                        "madam": "proud beauty",
+                        "professor": "foul blaggart",
+                        "restaurant": "galley",
+                        "your": "yer",
+                        "excuse": "arr",
+                        "students": "swabbies",
+                        "are": "be",
+                        "lawyer": "foul blaggart",
+                        "the": "the'",
+                        "restroom": "head",
+                        "my": "me",
+                        "hello": "avast",
+                        "is": "be",
+                        "man": "matey"
+                        }
 
+
+    pirate_phrase = []
+
+    for word in phrase.split():
+        pirate_word = english_to_pirate.get(word, word)
+        pirate_phrase.append(pirate_word)
+
+    return " ".join(pirate_phrase)
+
+    
 
 def sort_by_word_length(words):
     """Given list of words, return list of ascending [(len, [words])].
@@ -147,7 +181,13 @@ def sort_by_word_length(words):
 
     """
 
-    return []
+    word_lengths = {}
+
+    for word in words:
+        word_lengths.setdefault(len(word), []).append(word)
+
+
+    return sorted(word_lengths.items())
 
 
 def get_sum_zero_pairs(input_list):
@@ -179,7 +219,15 @@ def get_sum_zero_pairs(input_list):
 
     """
 
-    return []
+    input_set = set(input_list)
+
+    output_list = []
+
+    for x in input_set:
+        if x >= 0 and -x in input_set:
+            output_list.append([x, -x])
+
+    return output_list
 
 
 ##############################################################################
