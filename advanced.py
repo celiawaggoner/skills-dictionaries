@@ -64,7 +64,17 @@ def adv_alpha_sort_by_word_length(words):
 
     """
 
-    return []
+    word_lengths = {}
+
+    for word in words:
+        word_lengths.setdefault(len(word), []).append(word)
+
+    output_list = []
+
+    for count, value in sorted(word_lengths.items()):
+        output_list.append((count, sorted(value)))
+
+    return output_list
 
 
 ##############################################################################
